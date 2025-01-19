@@ -4,21 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bd83a311-e622-4628-879d-51cf19041578" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/SimpleCirucitAPSA2025BA.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bus.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Circuit.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Information" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Load.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resistor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/VSource.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/busTest.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+    <list default="true" id="bd83a311-e622-4628-879d-51cf19041578" name="Changes" comment="WIP part 2 of Project 1, I need to verify the classes">
+      <change afterPath="$PROJECT_DIR$/CircuitTest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LoadTest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ResistorTest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VSourceTest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bus.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bus.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Circuit.py" beforeDir="false" afterPath="$PROJECT_DIR$/Circuit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Load.py" beforeDir="false" afterPath="$PROJECT_DIR$/Load.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resistor.py" beforeDir="false" afterPath="$PROJECT_DIR$/Resistor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VSource.py" beforeDir="false" afterPath="$PROJECT_DIR$/VSource.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/busTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/busTest.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,16 +43,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.Bus_Class.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.Bus.executor": "Run",
+    "Python.Bus_Class.executor": "Run",
+    "Python.Circuit.executor": "Run",
+    "Python.CircuitTest.executor": "Run",
+    "Python.Fun.executor": "Run",
+    "Python.LoadTest.executor": "Run",
+    "Python.ResistorTest.executor": "Run",
+    "Python.VSourceTest.executor": "Run",
+    "Python.busTest.executor": "Run",
+    "Python.test.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Bus" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="SimpleCirucitAPSA2025BA" />
@@ -79,6 +84,11 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.Bus" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -96,6 +106,19 @@
       <option name="presentableId" value="Default" />
       <updated>1736862894640</updated>
     </task>
+    <task id="LOCAL-00001" summary="WIP part 2 of Project 1, I need to verify the classes">
+      <option name="closed" value="true" />
+      <created>1737124411925</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1737124411925</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="WIP part 2 of Project 1, I need to verify the classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP part 2 of Project 1, I need to verify the classes" />
   </component>
 </project>

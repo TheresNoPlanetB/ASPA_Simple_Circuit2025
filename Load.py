@@ -1,19 +1,42 @@
 class Load:
-    def __init__(self, name: str, bus1: str, p: float, q: float):
-        # Initialize the load with a name, a bus, and power values
-        self.name = name  # Name of the load
-        self.bus1 = bus1  # Bus connected to the load
-        self.p = p  # Active power value
-        self.q = q  # Reactive power value
-        self.g = self.calc_g()  # Calculate conductance during initialization
+    """
+    Represents a load in a simple circuit. A load is connected to a bus and consumes power (P) and reactive power (Q).
+    """
 
-    def calc_g(self) -> float:
+    def __init__(self, name: str, bus1: str, p: float, q: float):
         """
-        Calculates the conductance value.
-        Conductance is the reciprocal of the sum of active and reactive power.
-        Raises a ValueError if the sum of active and reactive power is zero.
+        *** Initializes a Load object with name, connected bus, and power consumption. ***
+        :param name: Name of the load as a string.
+        :param bus1: The bus to which the load is connected.
+        :param p: Real power consumed by the load in watts.
+        :param q: Reactive power consumed by the load in vars.
         """
-        if (self.p + self.q) != 0:
-            return 1 / (self.p + self.q)  # Conductance is the reciprocal of the sum of active and reactive power
+        self.name = name  # *** Load name, e.g., "Load1". ***
+        self.bus1 = bus1  # *** Name of the bus to which this load is connected. ***
+        self.p = p  # *** Real power consumed by the load (watts). ***
+        self.q = q  # *** Reactive power consumed by the load (vars). ***
+        self.g = 0.0  # *** Conductance of the load, to be calculated using calc_g(). ***
+
+        # *** Calculate the conductance upon initialization. ***
+        self.calc_g()
+
+    def calc_g(self):
+        """
+        *** Calculates the conductance (G) of the load using the formula: G = P / (V^2),
+        assuming voltage V is provided during use. Defaults to V = 1.0 p.u. for initialization. ***
+        """
+        voltage = 1.0  # Assuming default per-unit voltage during initialization.
+        if voltage != 0:
+            self.g = self.p / (voltage ** 2)
         else:
-            raise ValueError("The sum of active and reactive power cannot be zero for conductance calculation.")
+            self.g = 0.0  # Avoid division by zero.
+
+    def __str__(self):
+        """
+        *** Returns a human-readable string representation of the Load object. ***
+        :return: A string in the format "Load {name}: Bus = {bus1}, P = {p} W, Q = {q} vars, G = {g} S".
+        """
+        return (
+            f"Load {self.name}: Bus = {self.bus1}, P = {self.p} W, Q = {self.q} vars, "
+            f"G = {self.g:.4f} S"
+        )

@@ -1,12 +1,15 @@
 # Import the Bus class
 from Bus import Bus
 
-# Create a Bus object
-bus1 = Bus("Bus1")
+if __name__ == "__main__":
+    # *** Create a new bus object named "A". ***
+    bus1 = Bus("A")
 
-# Set the voltage at the bus
-bus1.set_bus_v(120.0)
+    # *** Print the initial state of the bus (Voltage should be 0.0). ***
+    print(bus1)  # Output: Bus A: Voltage = 0.0 V
 
-# Print the bus details to verify
-print(f"Bus Name: {bus1.name}")
-print(f"Bus Voltage: {bus1.v} V")
+    # *** Update the voltage of the bus to 12.0 volts. ***
+    bus1.set_bus_v(12.0)
+
+    # *** Print the updated state of the bus. ***
+    print(bus1)  # Output: Bus A: Voltage = 12.0 V

@@ -2,7 +2,7 @@
 from Bus import Bus
 from Resistor import Resistor
 from Load import Load
-from VSource import Vsource
+from VSource import VSource
 
 class Circuit:
     def __init__(self, name: str):
@@ -11,7 +11,7 @@ class Circuit:
         self.buses: dict[str, Bus] = {}  # Dictionary to store Bus objects
         self.resistors: dict[str, Resistor] = {}  # Dictionary to store Resistor objects
         self.loads: dict[str, Load] = {}  # Dictionary to store Load objects
-        self.VSource = VSource
+        self.vsource: VSource = None  # VSource object, initially set to None
         self.i: float = 0.0  # Current flowing through the circuit, initially set to 0.0
 
     def add_bus(self, bus: Bus):
@@ -26,23 +26,32 @@ class Circuit:
         Adds a resistor to the circuit.
         The resistor is created and added to the resistors dictionary with its name as the key.
         """
-        resistor = Resistor(name, bus1, bus2, r)  # Create a Resistor object
-        self.resistors[name] = resistor  # Add the Resistor object to the resistors dictionary
+        if bus1 in self.buses and bus2 in self.buses:
+            resistor = Resistor(name, bus1, bus2, r)  # Create a Resistor object
+            self.resistors[name] = resistor  # Add the Resistor object to the resistors dictionary
+        else:
+            print(f"Error: One or both buses ({bus1}, {bus2}) do not exist.")
 
     def add_load_element(self, name: str, bus1: str, p: float, q: float):
         """
         Adds a load to the circuit.
         The load is created and added to the loads dictionary with its name as the key.
         """
-        load = Load(name, bus1, p, q)  # Create a Load object
-        self.loads[name] = load  # Add the Load object to the loads dictionary
+        if bus1 in self.buses:
+            load = Load(name, bus1, p, q)  # Create a Load object
+            self.loads[name] = load  # Add the Load object to the loads dictionary
+        else:
+            print(f"Error: Bus {bus1} does not exist.")
 
     def add_vsource_element(self, name: str, bus1: str, v: float):
         """
         Adds a voltage source to the circuit.
         The voltage source is created and assigned to the vsource attribute.
         """
-        self.vsource = Vsource(name, bus1, v)  # Create a Vsource object and assign it to the vsource attribute
+        if bus1 in self.buses:
+            self.vsource = VSource(name, bus1, v)  # Create a VSource object and assign it to the vsource attribute
+        else:
+            print(f"Error: Bus {bus1} does not exist for voltage source.")
 
     def set_i(self, i: float):
         """
@@ -65,29 +74,84 @@ class Circuit:
         """
         print(f"Circuit current: {self.i} A")  # Print the current flowing through the circuit
 
+    def calculate_total_resistance(self):
+        """
+        Calculates the total resistance of the circuit.
+        This is a simplified version considering only resistors in series.
+        """
+        total_resistance = 0.0
+        for resistor in self.resistors.values():
+            total_resistance += resistor.r  # Assuming series circuit for simplicity
+        return total_resistance
+
+    def do_power_flow(self):
+        """
+        Solves for the voltages at each bus and the current in the circuit using power flow analysis.
+        """
+        total_resistance = self.calculate_total_resistance()
+        if total_resistance > 0:
+            # Use Ohm's law to compute voltage across the entire circuit based on total resistance
+            total_voltage = self.vsource.v if self.vsource else 0
+            self.i = total_voltage / total_resistance  # Simplified for series resistors
+
+            # Assuming the voltage at the first bus is the source voltage
+            if self.vsource:
+                first_bus = self.buses[self.vsource.bus1]
+                first_bus.v = self.vsource.v
+
+            # Update the voltage at each bus based on the current and resistances
+            for resistor in self.resistors.values():
+                if resistor.bus1 in self.buses and resistor.bus2 in self.buses:
+                    bus1 = self.buses[resistor.bus1]
+                    bus2 = self.buses[resistor.bus2]
+                    voltage_drop = self.i * resistor.r
+                    bus2.v = bus1.v - voltage_drop
+
+            # Print the results
+            self.print_nodal_voltage()
+            self.print_circuit_current()
+        else:
+            print("Error‼️: Total resistance is zero. Check your circuit configuration.")
+
+# Example usage:
 # Create a Circuit object
 circuit = Circuit("Test Circuit")
 
-# Add buses to the circuit
-bus1 = Bus("Bus1")
-bus2 = Bus("Bus2")
-circuit.add_bus(bus1)
-circuit.add_bus(bus2)
+# Add buses
+circuit.add_bus(Bus("Bus1"))
+circuit.add_bus(Bus("Bus2"))
 
-# Add a resistor to the circuit
+# Add resistor and voltage source
 circuit.add_resistor_element("R1", "Bus1", "Bus2", 10.0)
+circuit.add_vsource_element("V1", "Bus1", 10.0)
 
-# Add a load to the circuit
-circuit.add_load_element("L1", "Bus1", 5.0, 3.0)
+# Perform power flow analysis, which is calculating and display the voltage at each bus and the current flowing through the circuit.
+circuit.do_power_flow()
+def do_power_flow(self):
+    """
+    Solves for the voltages at each bus and the current in the circuit using power flow analysis.
+    """
+    total_resistance = self.calculate_total_resistance()
+    if total_resistance > 0:
+        # Use Ohm's law to compute voltage across the entire circuit based on total resistance
+        total_voltage = self.vsource.v if self.vsource else 0
+        self.i = total_voltage / total_resistance  # Simplified for series resistors
 
-# Add a voltage source to the circuit
-circuit.add_vsource_element("V1", "Bus1", 120.0)
+        # Assuming the voltage at the first bus is the source voltage
+        if self.vsource:
+            first_bus = self.buses[self.vsource.bus1]
+            first_bus.v = self.vsource.v
 
-# Set the current flowing through the circuit
-circuit.set_i(15.0)
+        # Update the voltage at each bus based on the current and resistances
+        for resistor in self.resistors.values():
+            if resistor.bus1 in self.buses and resistor.bus2 in self.buses:
+                bus1 = self.buses[resistor.bus1]
+                bus2 = self.buses[resistor.bus2]
+                voltage_drop = self.i * resistor.r
+                bus2.v = bus1.v - voltage_drop
 
-# Print the nodal voltages
-circuit.print_nodal_voltage()
-
-# Print the circuit current
-circuit.print_circuit_current()
+        # Print the results
+        self.print_nodal_voltage()
+        self.print_circuit_current()
+    else:
+        print("Error: Total resistance is zero. Check your circuit configuration.")
