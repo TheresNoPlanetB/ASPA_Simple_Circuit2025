@@ -4,7 +4,7 @@ from Bus import Bus
 from Solution import Solution
 
 # Define the circuit
-circuit = Circuit("Simple DC Circuit for Project One with the class Advanced Power System Analysis")
+circuit = Circuit("Simple DC Circuit for Project One with the class Advanced Power System Analysis At Pitt, Graduate Level")
 
 # Add buses A and B
 circuit.add_bus(Bus("A"))

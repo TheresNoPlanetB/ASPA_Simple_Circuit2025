@@ -72,7 +72,7 @@ class Circuit:
             self.vsource = VSource(name, bus1, v)
             print(f"Voltage source {name} added to bus {bus1} with V = {v} V.")
         else:
-            print(f"Error: Bus {bus1} does not exist for voltage source.")
+            print(f" ‼️ Error: Bus {bus1} does not exist for voltage source. ⚡️")
 
     def calculate_total_resistance(self) -> float:
         """
@@ -127,4 +127,4 @@ class Circuit:
             self.print_nodal_voltage()
             self.print_circuit_current()
         else:
-            print("Error: Total resistance must be greater than zero.")
+            print(" ❗️Error: Total resistance must be greater than zero.")

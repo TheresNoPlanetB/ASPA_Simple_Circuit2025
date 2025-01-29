@@ -29,7 +29,7 @@ class Load:
         if self.voltage != 0:
             self.g = self.p/(self.voltage ** 2)
         else:
-            self.g = 0.0  # Avoid division by zero.
+            self.g = 0.0  # Avoiding division by zero.
 
 
     def __str__(self):

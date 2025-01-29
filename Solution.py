@@ -19,8 +19,6 @@ class Solution:
         # Set voltage at bus A based on the voltage source
         self.circuit.buses[vsource.bus1].set_bus_v(vsource.v)
 
-
-#adding WRONG!
         # Calculate total conductance of the resistor and load
         total_g = 1 /((1/ resistor.g) + (1/load.g)) # Total conductance
 
